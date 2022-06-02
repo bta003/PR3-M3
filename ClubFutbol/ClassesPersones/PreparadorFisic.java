@@ -12,7 +12,7 @@ public class PreparadorFisic extends Tecnic implements Serializable{
             String email, int nss, int soubase, int anysexperiencia) {
         super(dni, nom, cognoms, datanaixement, telefon, email, nss, soubase, anysexperiencia);
         // this.incentiuAnysExp = incentiuAnysExp;
-        this.souFinal = obtenirSouFinal();
+        getSouFinal();
 
     }
 
@@ -28,17 +28,14 @@ public class PreparadorFisic extends Tecnic implements Serializable{
         this.incentiuAnysExp = incentiuAnysExp;
     }
 
-    public double getSouFinal() {
-        return souFinal;
-    }
-
     public void setSouFinal(double souFinal) {
         this.souFinal = souFinal;
     }
 
-    public double obtenirSouFinal(){
-        double souInc = getSoubase() + (getAnysexperiencia() / incentiuAnysExp);
-        return souInc;
+    @Override
+    public double getSouFinal(){
+        this.souFinal = getSoubase() + (getAnysexperiencia() / incentiuAnysExp);
+        return this.souFinal;
     }
 
     @Override

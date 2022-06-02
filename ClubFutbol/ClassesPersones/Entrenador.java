@@ -8,14 +8,14 @@ import ClassesClub.Club;
 
 public class Entrenador extends Tecnic implements Serializable{
     private int numTrofeus;
-    private double incentiuTrofeus = 0.3;
+    private double incentiuTrofeus = 0.03;
     private double souFinal;
 
     public Entrenador(String dni, String nom, String cognoms, LocalDate datanaixement, int telefon, String email, int nss, int soubase, int anysexperiencia, int numTrofeus) {
         super(dni, nom, cognoms, datanaixement, telefon, email, nss, soubase, anysexperiencia);
         this.numTrofeus = numTrofeus;
         // this.incentiuTrofeus = incentiuTrofeus;
-        this.souFinal = obtenirSouFinal();
+        getSouFinal();
     }
 
     public Entrenador(){
@@ -40,17 +40,14 @@ public class Entrenador extends Tecnic implements Serializable{
         this.incentiuTrofeus = incentiuTrofeus;
     }
 
-    public double getSouFinal() {
-        return souFinal;
-    }
-
     public void setSouFinal(double souFinal) {
         this.souFinal = souFinal;
     }
 
-    public double obtenirSouFinal(){
-        double souInc = getSoubase() + (getNumTrofeus() / incentiuTrofeus);
-        return souInc;
+    @Override
+    public double getSouFinal(){
+        this.souFinal = getSoubase() + (getNumTrofeus() / incentiuTrofeus);
+        return this.souFinal;
     }
 
     @Override
