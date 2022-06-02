@@ -137,7 +137,7 @@ public class Club implements Serializable {
           visualitzarDadesEco();
           break;
         case 5:
-          escriureDades();
+          // escriureDades();
           sortir = true;
           break;
         default:
@@ -1734,13 +1734,20 @@ public class Club implements Serializable {
     System.out.println("---------------------------");
   }
 
-  private void escriureDades() throws IOException {
-    Club club = new Club();
-    FileOutputStream out = new FileOutputStream("dades/dades.dat");
-    File f = new File("dades/dades.dat");
-    f.createNewFile();
-    ObjectOutputStream oo = new ObjectOutputStream(out);
-    oo.writeObject(club);
-    oo.close();
-  }
+  // private void escriureDades() throws IOException {
+  //   Club club = new Club(
+  //     "Cervera CF",
+  //     "F23561289",
+  //     "Av/ Catalunya 50, Cervera 25200",
+  //     629344356,
+  //     "cerveracf@fcf.cat",
+  //     "cerveracf.cat"
+  //   );
+  //   FileOutputStream out = new FileOutputStream("dades/dades.dat");
+  //   File f = new File("dades/dades.dat");
+  //   f.createNewFile();
+  //   ObjectOutputStream oo = new ObjectOutputStream(out);
+  //   oo.writeObject(club);
+  //   oo.close();
+  // }
 }
