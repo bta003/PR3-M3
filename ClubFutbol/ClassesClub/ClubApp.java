@@ -24,18 +24,20 @@ public class ClubApp {
     );
 
     if (new File("dades/dades.dat").exists()) {
-      FileInputStream in = new FileInputStream("dades.dat");
+
+      FileInputStream in = new FileInputStream("dades/dades.dat");
       ObjectInputStream o = new ObjectInputStream(in);
 
       club = (Club) o.readObject();
-
-      Treballador.setNumempleat((int) o.readObject());
 
       Soci.setNumsoci((int) o.readObject());
 
       Soci.setNumlocalitat((int) o.readObject());
 
+      Treballador.setNumempleat((int) o.readObject());
+
       Jugador.setDorsal((int) o.readObject());
+
     } else {
       club.altaPersones();
     }

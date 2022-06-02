@@ -4,15 +4,11 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Map;
 
-public class Jugador extends Treballador implements Serializable {
+public abstract class Jugador extends Treballador implements Serializable {
     private int dorsal;
     private boolean esTitular;
     private static int contdorsal;
 
-
-    // public Jugador(String dni) {
-    //     super(dni);
-    // }
 
     public Jugador(String dni, String nom, String cognoms, LocalDate datanaixement, int telefon, String email, int nss, int soubase, boolean esTitular) {
         super(dni, nom, cognoms, datanaixement, telefon, email, nss, soubase);

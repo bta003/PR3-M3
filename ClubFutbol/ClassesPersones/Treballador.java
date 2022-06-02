@@ -10,10 +10,6 @@ public abstract class Treballador extends Persona implements Serializable{
     private int numempleat;
     private static int contempleat;
 
-    // public Treballador(String dni) {
-    //     super(dni);
-    // }
-
     public Treballador(String dni, String nom, String cognoms, LocalDate datanaixement, int telefon, String email, int nss, int soubase) {
         super(dni, nom, cognoms, datanaixement, telefon, email);
         this.nss = nss;

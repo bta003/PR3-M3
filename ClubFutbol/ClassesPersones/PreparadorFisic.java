@@ -7,9 +7,6 @@ public class PreparadorFisic extends Tecnic implements Serializable{
     private double incentiuAnysExp= 0.10;
     private double souFinal;
 
-    // public PreparadorFisic(String dni) {
-    //     super(dni);
-    // }
 
     public PreparadorFisic(String dni, String nom, String cognoms, LocalDate datanaixement, int telefon,
             String email, int nss, int soubase, int anysexperiencia) {

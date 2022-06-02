@@ -5,17 +5,13 @@ import ClassesPersones.Defensa;
 import ClassesPersones.Entrenador;
 import ClassesPersones.Jugador;
 import ClassesPersones.Migcampista;
-import ClassesPersones.Persona;
 import ClassesPersones.Porter;
 import ClassesPersones.PreparadorFisic;
 import ClassesPersones.Soci;
-import ClassesPersones.Tecnic;
 import ClassesPersones.Treballador;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -370,6 +366,14 @@ public class Club implements Serializable {
   }
 
   private void altaTreballadors() {
+    treballadors.put(
+      "94433211H",
+      new Entrenador("94433211H", "Daniel", "Alcobé Orellana", LocalDate.parse("2003-11-20"), 649271955, "danielentrenador@cfc.cat",288759584, 2100, 2, 1)
+    );
+    treballadors.put(
+      "41666300Y",
+      new PreparadorFisic("41666300Y", "Paulino", "Belmonte Zamora", LocalDate.parse("1990-04-17"), 713443829, "paulinopf@cfc.cat", 257225265, 1950, 11)
+    );
     treballadors.put(
       "54626390X",
       new Porter(
@@ -1454,62 +1458,261 @@ public class Club implements Serializable {
   }
 
   private void ordenarCognomNom() {
-  
+    System.out.println("\nLlista de socis ordenats per cognoms i nom:\n");
+
+    ArrayList<Soci> alSocis = new ArrayList<Soci>();
+
+    for (Soci s : socis.values()) {
+      alSocis.add(s);
+    }
+
+    Collections.sort(
+      alSocis,
+      new Comparator<Soci>() {
+        public int compare(Soci s1, Soci s2) {
+          int num = s1.getCognoms().compareTo(s2.getCognoms());
+          if (num == 0) {
+            return s1.getNom().compareTo(s2.getNom());
+          }
+          return num;
+        }
+      }
+    );
+
+    for (Soci s : alSocis) {
+      System.out.println(
+        "-Cognoms: " +
+        s.getCognoms() +
+        "  -Nom: " +
+        s.getNom() +
+        "   -DNI:  " +
+        s.getDni() +
+        "  -Tel:   " +
+        s.getTelefon() +
+        "  -Email:   " +
+        s.getEmail() +
+        "  -Data naix:  " +
+        s.getDatanaixement() +
+        "   -Localitat: " +
+        s.getNumlocalitat()
+      );
+    }
+
+    System.out.println("");
   }
 
   private void ordenarLocalitat() {
-    
+    System.out.println("\nLlista de socis ordenats per número de localitat:\n");
+
+    ArrayList<Soci> alSocis = new ArrayList<Soci>();
+
+    for (Soci s : socis.values()) {
+      alSocis.add(s);
+    }
+
+    Collections.sort(
+      alSocis,
+      new Comparator<Soci>() {
+        public int compare(Soci s1, Soci s2) {
+          return s1.getNumlocalitat() - s2.getNumlocalitat();
+        }
+      }
+    );
+
+    for (Soci s : alSocis) {
+      System.out.println(
+        "-Localitat: " +
+        s.getNumlocalitat() +
+        " -Nom: " +
+        s.getNom() +
+        "  -Cognoms: " +
+        s.getCognoms() +
+        "   -DNI:  " +
+        s.getDni() +
+        "  -Tel:   " +
+        s.getTelefon() +
+        "  -Email:   " +
+        s.getEmail() +
+        "  -Data naix:  " +
+        s.getDatanaixement()
+      );
+    }
+
+    System.out.println("");
   }
 
   private void ordenarQuotaAnual() {
- 
+    System.out.println("\nLlista de socis ordenats per quota anual:\n");
+
+    ArrayList<Soci> alSocis = new ArrayList<Soci>();
+
+    for (Soci s : socis.values()) {
+      alSocis.add(s);
+    }
+
+    Collections.sort(
+      alSocis,
+      new Comparator<Soci>() {
+        public int compare(Soci s1, Soci s2) {
+          return s1.getQuotaanual() - s2.getQuotaanual();
+        }
+      }
+    );
+
+    for (Soci s : alSocis) {
+      System.out.println(
+        "-Quota anual  " +
+        s.getQuotaanual() +
+        "  -Nom: " +
+        s.getNom() +
+        "  -Cognoms: " +
+        s.getCognoms() +
+        "   -DNI:  " +
+        s.getDni() +
+        "  -Tel:   " +
+        s.getTelefon() +
+        "  -Email:   " +
+        s.getEmail() +
+        "  -Data naix:  " +
+        s.getDatanaixement() +
+        "   -Localitat: " +
+        s.getNumlocalitat()
+      );
+    }
+    System.out.println("");
   }
 
   public void visualitzaTreballadors() {
-    treballadors
-      .entrySet()
-      .forEach(
-        entry -> {
-          System.out.println("");
-          System.out.println(entry.getValue());
+    // treballadors
+    //   .entrySet()
+    //   .forEach(
+    //     entry -> {
+    //       System.out.println("");
+    //       System.out.println(entry.getValue());
+    //     }
+    //   );
+    Scanner teclat = new Scanner(System.in);
+    boolean sortir = false;
+
+    do {
+        System.out.println("__________________________________________________");
+        System.out.println("|          VISUALITZA PLANTILLA PER CRITERIS     |");
+        System.out.println("|          1. Ordenat per tipus de rol           |");
+        System.out.println("|          2. Ordenat per sou incentivat         |");
+        System.out.println("|          3. Sortir                             |");
+        System.out.println("|________________________________________________|");
+        System.out.println("\nTRIA UNA OPCIÓ:");
+
+        while (!teclat.hasNextInt()) {
+            System.out.println("Opció no vàlida");
+            teclat.next();
+            System.out.println("Escriu un numero enter");
         }
-      );
-    // Scanner teclat = new Scanner(System.in);
-    // boolean sortir = false;
 
-    // do {
-    //     System.out.println("__________________________________________________");
-    //     System.out.println("|          VISUALITZA PLANTILLA PER CRITERIS     |");
-    //     System.out.println("|          1. Ordenat per tipus de rol           |");
-    //     System.out.println("|          2. Ordenat per sou incentivat         |");
-    //     System.out.println("|          3. Sortir                             |");
-    //     System.out.println("|________________________________________________|");
-    //     System.out.println("\nTRIA UNA OPCIÓ:");
+        int opcio = teclat.nextInt();
 
-    //     while (!teclat.hasNextInt()) {
-    //         System.out.println("Opció no vàlida");
-    //         teclat.next();
-    //         System.out.println("Escriu un numero enter");
-    //     }
-
-    //     int opcio = teclat.nextInt();
-
-    //     switch (opcio) {
-    //         case 1:
-    //             // ordenar per rol
-    //             break;
-    //         case 2:
-    //             // ordenar per sou incentivat
-    //             break;
-    //         case 3:
-    //             sortir = true;
-    //             break;
-    //         default:
-    //             System.out.println("\n" + opcio + " NO ÉS UNA OPCIÓ NO VÀLIDA");
-    //     }
-    // } while (!sortir);
+        switch (opcio) {
+            case 1:
+                ordenarRol();
+                break;
+            case 2:
+                ordenarSou();
+                break;
+            case 3:
+                sortir = true;
+                break;
+            default:
+                System.out.println("\n" + opcio + " NO ÉS UNA OPCIÓ NO VÀLIDA");
+        }
+    } while (!sortir);
 
   }
+
+  private void ordenarRol(){
+    System.out.println("\nLlista de treballadors ordenats per rol en la plantilla:\n");
+
+    ArrayList<Treballador> alTreballadors = new ArrayList<Treballador>();
+
+    for (Treballador t : treballadors.values()) {
+      alTreballadors.add(t);
+    }
+
+    Collections.sort(
+      alTreballadors,
+      new Comparator<Treballador>() {
+        public int compare(Treballador t1, Treballador t2) {
+          return (t1.getClass().getName().compareTo(t2.getClass().getName()));
+        }
+      }
+    );
+
+
+    for (Treballador t : alTreballadors) {
+      System.out.println(
+        " -Rol: " +
+        t.getClass().getName().substring(16, t.getClass().getName().length()) +
+        "  -Nom: " +
+        t.getNom() +
+        "  -Cognoms: " +
+        t.getCognoms() +
+        "   -DNI:  " +
+        t.getDni() +
+        "  -Tel:   " +
+        t.getTelefon() +
+        "  -Email:   " +
+        t.getEmail() +
+        "  -Data naix:  " +
+        t.getDatanaixement() +
+        " -Sou incentivat: " +
+        String.valueOf(t.getSouFinal() - t.getSoubase()).format("%.2f", t.getSouFinal() - t.getSoubase()) + " EUR"
+      );
+    }
+
+    System.out.println("");
+  }
+
+
+  private void ordenarSou(){
+    System.out.println("\nLlista de treballadors ordenats per sou incentivat:\n");
+
+    ArrayList<Treballador> alTreballadors = new ArrayList<Treballador>();
+
+    for (Treballador t : treballadors.values()) {
+      alTreballadors.add(t);
+    }
+
+    Collections.sort(
+      alTreballadors,
+      new Comparator<Treballador>() {
+        public int compare(Treballador t1, Treballador t2) {
+          return (int) ((t1.getSouFinal()-t1.getSoubase()) - (t2.getSouFinal()-t2.getSoubase()));
+        }
+      }
+    );
+
+    for (Treballador t : alTreballadors) {
+      System.out.println(
+        " -Sou incentivat: " +
+        String.valueOf(t.getSouFinal() - t.getSoubase()).format("%.2f", t.getSouFinal() - t.getSoubase()) + " EUR" +
+        " -Nom: " +
+        t.getNom() +
+        "  -Cognoms: " +
+        t.getCognoms() +
+        "   -DNI:  " +
+        t.getDni() +
+        "  -Tel:   " +
+        t.getTelefon() +
+        "  -Email:   " +
+        t.getEmail() +
+        "  -Data naix:  " +
+        t.getDatanaixement()
+      );
+    }
+
+    System.out.println("");
+  }
+
+
 
   public void visualitzarDadesEco() {
     double sous = 0;
@@ -1533,8 +1736,8 @@ public class Club implements Serializable {
 
   private void escriureDades() throws IOException {
     Club club = new Club();
-    FileOutputStream out = new FileOutputStream("dades.dat");
-    File f = new File("dades.dat");
+    FileOutputStream out = new FileOutputStream("dades/dades.dat");
+    File f = new File("dades/dades.dat");
     f.createNewFile();
     ObjectOutputStream oo = new ObjectOutputStream(out);
     oo.writeObject(club);
