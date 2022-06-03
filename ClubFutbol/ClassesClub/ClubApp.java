@@ -13,33 +13,33 @@ import java.io.ObjectInputStream;
 public class ClubApp {
 
   public static void main(String[] args)
-    throws IOException, ClassNotFoundException {
+      throws IOException, ClassNotFoundException {
     Club club = new Club(
-      "Cervera CF",
-      "F23561289",
-      "Av/ Catalunya 50, Cervera 25200",
-      629344356,
-      "cerveracf@fcf.cat",
-      "cerveracf.cat"
-    );
+        "Cervera CF",
+        "F23561289",
+        "Av/ Catalunya 50, Cervera 25200",
+        629344356,
+        "cerveracf@fcf.cat",
+        "cerveracf.cat");
+
 
     // if (new File("dades/dades.dat").exists()) {
 
-    //   FileInputStream in = new FileInputStream("dades/dades.dat");
-    //   ObjectInputStream o = new ObjectInputStream(in);
+    // FileInputStream in = new FileInputStream("dades/dades.dat");
+    // ObjectInputStream o = new ObjectInputStream(in);
 
-    //   club = (Club) o.readObject();
+    // club = (Club) o.readObject();
 
-    //   Soci.setNumsoci((int) o.readObject());
+    // Soci.setNumsoci((int) o.readObject());
 
-    //   Soci.setNumlocalitat((int) o.readObject());
+    // Soci.setNumlocalitat((int) o.readObject());
 
-    //   Treballador.setNumempleat((int) o.readObject());
+    // Treballador.setNumempleat((int) o.readObject());
 
-    //   Jugador.setDorsal((int) o.readObject());
+    // Jugador.setDorsal((int) o.readObject());
 
     // } else {
-      club.altaPersones();
+    club.altaPersones();
     // }
 
     club.gestioClub();
